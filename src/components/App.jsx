@@ -6,7 +6,6 @@ import { ContactsStorage } from './ContactsStorage/ContactsStorage';
 export class App extends Component {
   state = {
     contacts: [],
-    name: '',
   };
 
   addContact = newContact => {

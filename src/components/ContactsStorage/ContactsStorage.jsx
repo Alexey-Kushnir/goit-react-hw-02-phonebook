@@ -4,8 +4,12 @@ import { ContactItem } from './ContactsStorage.styled';
 export const ContactsStorage = ({ contactList }) => {
   return (
     <ul>
-      {contactList.map(contact => {
-        return <ContactItem key={contact.id}>{contact.name}</ContactItem>;
+      {contactList.map(({ id, name, number }) => {
+        return (
+          <ContactItem key={id}>
+            {name}: {number}
+          </ContactItem>
+        );
       })}
     </ul>
   );

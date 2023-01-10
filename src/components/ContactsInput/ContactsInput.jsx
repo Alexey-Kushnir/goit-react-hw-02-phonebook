@@ -10,10 +10,12 @@ import {
 
 export class ContactsInput extends Component {
   nameInputId = nanoid(8);
+  numberInputId = nanoid(8);
 
   state = {
     id: nanoid(8),
     name: '',
+    number: '',
   };
 
   handleInputChange = e => {
@@ -28,7 +30,7 @@ export class ContactsInput extends Component {
   };
 
   reset = () => {
-    this.setState({ id: nanoid(8), name: '' });
+    this.setState({ id: nanoid(8), name: '', number: '' });
   };
 
   render() {
@@ -44,6 +46,17 @@ export class ContactsInput extends Component {
           value={this.state.name}
           onChange={this.handleInputChange}
           id={this.nameInputId}
+        />
+        <InputName htmlFor={this.numberInputId}>Number</InputName>
+        <InputValue
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          value={this.state.number}
+          onChange={this.handleInputChange}
+          id={this.numberInputId}
         />
         <SubmitButton type="submit">Ad contact</SubmitButton>
       </Container>
