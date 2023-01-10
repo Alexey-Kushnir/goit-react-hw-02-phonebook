@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
 import { Section } from './Section/Section';
-
-// model.id = nanoid();
+import { ContactsInput } from './ContactsInput/ContactsInput';
+import { ContactsStorage } from './ContactsStorage/ContactsStorage';
 
 export class App extends Component {
   state = {
     contacts: [],
     name: '',
+  };
+
+  addContact = newContact => {
+    this.setState(({ contacts }) => ({
+      contacts: [...contacts, newContact],
+    }));
   };
 
   render() {
@@ -16,6 +21,7 @@ export class App extends Component {
         style={{
           // height: '100vh',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
@@ -23,10 +29,10 @@ export class App extends Component {
         }}
       >
         <Section title="Phonebook">
-          <ContactsInput />
+          <ContactsInput onSubmit={this.addContact} />
         </Section>
         <Section title="Contacts">
-          <ContactsStorage />
+          <ContactsStorage contactList={this.state.contacts} />
         </Section>
       </div>
     );
