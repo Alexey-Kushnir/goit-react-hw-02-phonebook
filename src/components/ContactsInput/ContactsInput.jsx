@@ -51,7 +51,6 @@ export class ContactsInput extends Component {
   }
 }
 
-// ContactsInput.propTypes = {
-//   options: PropTypes.array.isRequired,
-//   onLeaveFeedback: PropTypes.func.isRequired,
-// };
+ContactsInput.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

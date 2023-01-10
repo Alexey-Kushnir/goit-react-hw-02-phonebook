@@ -11,7 +11,6 @@ export const ContactsStorage = ({ contactList }) => {
   );
 };
 
-// ContactsStorage.propTypes = {
-//   options: PropTypes.array.isRequired,
-//   onLeaveFeedback: PropTypes.func.isRequired,
-// };
+ContactsStorage.propTypes = {
+  contactList: PropTypes.array.isRequired,
+};
