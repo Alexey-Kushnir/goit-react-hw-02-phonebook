@@ -34,29 +34,33 @@ export class ContactsInput extends Component {
   };
 
   render() {
+    const { handleSubmit, nameInputId, handleInputChange, numberInputId } =
+      this;
+    const { name, number } = this.state;
+
     return (
-      <Container onSubmit={this.handleSubmit}>
-        <InputName htmlFor={this.nameInputId}>Name</InputName>
+      <Container onSubmit={handleSubmit}>
+        <InputName htmlFor={nameInputId}>Name</InputName>
         <InputValue
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={this.state.name}
-          onChange={this.handleInputChange}
-          id={this.nameInputId}
+          value={name}
+          onChange={handleInputChange}
+          id={nameInputId}
         />
-        <InputName htmlFor={this.numberInputId}>Number</InputName>
+        <InputName htmlFor={numberInputId}>Number</InputName>
         <InputValue
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={this.state.number}
-          onChange={this.handleInputChange}
-          id={this.numberInputId}
+          value={number}
+          onChange={handleInputChange}
+          id={numberInputId}
         />
         <SubmitButton type="submit">Ad contact</SubmitButton>
       </Container>

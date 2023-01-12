@@ -12,5 +12,5 @@ export const Section = ({ title, children }) => {
 
 Section.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.bool, PropTypes.element]).isRequired,
 };
