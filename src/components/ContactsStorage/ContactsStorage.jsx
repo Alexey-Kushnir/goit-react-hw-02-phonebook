@@ -27,5 +27,5 @@ ContactsStorage.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onDeleteCOntact: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
