@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
-import { ContactItem, DeleteButton } from './ContactsStorage.styled';
+import { Contact } from 'components/ContactItem/ContactItem';
 
-export const ContactsStorage = ({ contactList, onDeleteCOntact }) => {
+export const ContactsStorage = ({ contactList, onDeleteContact }) => {
   return (
     <ul>
       {contactList.map(({ id, name, number }) => {
         return (
-          <ContactItem key={id}>
-            {name}: {number}
-            <DeleteButton type="button" onClick={() => onDeleteCOntact(id)}>
-              Delete
-            </DeleteButton>
-          </ContactItem>
+          <Contact
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDeleteContact={onDeleteContact}
+          />
         );
       })}
     </ul>
@@ -19,6 +20,12 @@ export const ContactsStorage = ({ contactList, onDeleteCOntact }) => {
 };
 
 ContactsStorage.propTypes = {
-  contactList: PropTypes.array.isRequired,
+  contactList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   onDeleteCOntact: PropTypes.func.isRequired,
 };

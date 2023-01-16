@@ -12,8 +12,11 @@ export class ContactsInput extends Component {
   nameInputId = nanoid(8);
   numberInputId = nanoid(8);
 
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
-    id: nanoid(8),
     name: '',
     number: '',
   };
@@ -25,12 +28,13 @@ export class ContactsInput extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.reset();
+    if (this.props.onSubmit(this.state)) {
+      this.reset();
+    }
   };
 
   reset = () => {
-    this.setState({ id: nanoid(8), name: '', number: '' });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -68,6 +72,6 @@ export class ContactsInput extends Component {
   }
 }
 
-ContactsInput.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+// ContactsInput.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+// };

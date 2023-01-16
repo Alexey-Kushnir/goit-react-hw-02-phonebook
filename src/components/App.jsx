@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { Section } from './Section/Section';
 import { ContactsInput } from './ContactsInput/ContactsInput';
 import { ContactsStorage } from './ContactsStorage/ContactsStorage';
@@ -10,16 +11,19 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = newContact => {
-    if (this.state.contacts.some(contact => contact.name === newContact.name))
-      return alert(`${newContact.name} is already in contacts.`);
+  addContact = ({ name, number }) => {
+    if (this.state.contacts.some(contact => contact.name === name)) {
+      alert(`${name} is already in contacts.`);
+      return false;
+    }
 
     this.setState(({ contacts }) => ({
-      contacts: [...contacts, newContact],
+      contacts: [{ id: nanoid(8), name, number }, ...contacts],
     }));
+    return true;
   };
 
-  deleteConnact = contactId => {
+  deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
@@ -39,7 +43,7 @@ export class App extends Component {
   };
 
   render() {
-    const { addContact, changeFilter, getVisibleContacts, deleteConnact } =
+    const { addContact, changeFilter, getVisibleContacts, deleteContact } =
       this;
     const { contacts, filter } = this.state;
 
@@ -64,7 +68,7 @@ export class App extends Component {
               <Filter value={filter} onChange={changeFilter} />
               <ContactsStorage
                 contactList={getVisibleContacts()}
-                onDeleteCOntact={deleteConnact}
+                onDeleteContact={deleteContact}
               />
             </>
           )}
